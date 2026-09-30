@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>점수따는남자 · 썰 관련템</title>
+<style>
+:root { --bg:#EDEFF2; --card:#fff; --ink:#1d1f23; --sub:#6b7079; --pink:#FF5A7A; --line:#e6e8eb; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#141518; --card:#1f2126; --ink:#eceef1; --sub:#9aa0a8; --line:#2c2f36; }
+}
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif; }
+header { background:var(--pink); color:#fff; padding:20px 16px 18px; text-align:center; }
+header img { width:72px; height:72px; border-radius:50%; background:#fff; object-fit:cover; object-position:top; }
+header h1 { margin:8px 0 2px; font-size:20px; }
+header p { margin:0; font-size:13px; opacity:.9; }
+main { max-width:560px; margin:0 auto; padding:14px 16px 40px; }
+.find { display:flex; gap:8px; position:sticky; top:0; padding:10px 0; background:var(--bg); z-index:1; }
+.find input { flex:1; min-width:0; font-size:16px; padding:12px 14px; border-radius:12px;
+  border:1px solid var(--line); background:var(--card); color:var(--ink); }
+.ep { background:var(--card); border-radius:16px; padding:16px; margin:12px 0; scroll-margin-top:72px; }
+.ep:target { outline:3px solid var(--pink); }
+.no { display:inline-block; background:var(--pink); color:#fff; font-weight:700; font-size:13px;
+  border-radius:999px; padding:3px 10px; }
+.ep h2 { font-size:17px; margin:8px 0 12px; line-height:1.4; }
+.item { display:flex; justify-content:space-between; align-items:center; gap:8px; text-decoration:none;
+  color:var(--ink); border:1px solid var(--line); border-radius:12px; padding:13px 14px; margin-top:8px; font-weight:600; }
+.item span { color:var(--pink); font-size:13px; white-space:nowrap; }
+.note { font-size:12px; color:var(--sub); line-height:1.5; margin:4px 2px 0; }
+.empty { text-align:center; color:var(--sub); }
+</style>
+</head>
+<body>
+<header>
+  <img src="profile.png" alt="">
+  <h1>점수따는남자 · 썰 관련템</h1>
+  <p>영상 속 #번호를 찾아보세요</p>
+</header>
+<main>
+  <p class="note">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다. 썰은 각색된 이야기입니다.</p>
+  <div class="find"><input id="q" type="search" inputmode="search" placeholder="#번호 또는 키워드 (예: 1, 무드등)"></div>
+<p class="empty">아직 등록된 썰이 없어요.</p>
+</main>
+<script>
+const q = document.getElementById('q');
+q.addEventListener('input', () => {
+  const v = q.value.trim().replace(/^#/, '');
+  const exact = /^\d+$/.test(v);
+  document.querySelectorAll('.ep').forEach(el => {
+    el.hidden = v && (exact ? el.id !== v : !el.dataset.q.includes(v));
+  });
+});
+</script>
+</body>
+</html>
